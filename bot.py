@@ -1,4 +1,4 @@
-import re, socket, ssl
+import configparser, re, socket, ssl
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -56,9 +56,12 @@ class Bot:
                 self.findtitle(link)
 
 if __name__ == "__main__":
-    bot = Bot("destruktiv.se", 6697, "ircbot")
+    config = configparser.ConfigParser()
+    config.read("settings.ini")
+
+    bot = Bot(config["Server"]["Domain"], int(config["Server"]["Port"]), config["Bot"]["Nick"])
     bot.connect()
-    bot.join("#test")
+    bot.join(config["Channel"]["Channel"])
 
     while True:
         bot.receive()
