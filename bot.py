@@ -1,4 +1,4 @@
-import configparser, re, socket, ssl, time
+import configparser, re, socket, ssl, sys, time
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -47,7 +47,7 @@ class Bot:
 
         if message.find(":die " + self.nick) != -1:
             self.send("Goodbye!")
-            sys.exit(0)
+            sys.exit()
 
         if message.find("http") != -1:
             links = re.findall(r"(https?://\S+)", message)
@@ -62,6 +62,8 @@ if __name__ == "__main__":
     bot = Bot(config["Server"]["Domain"], int(config["Server"]["Port"]), config["Bot"]["Nick"])
     bot.connect()
 
+    # This should be replaced by a more proper solution where we wait for a 001
+    # before proceeding.
     time.sleep(3)
 
     bot.join(config["Channel"]["Channel"])
