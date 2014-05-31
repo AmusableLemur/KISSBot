@@ -1,4 +1,4 @@
-import configparser, re, socket, ssl
+import configparser, re, socket, ssl, time
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -61,6 +61,9 @@ if __name__ == "__main__":
 
     bot = Bot(config["Server"]["Domain"], int(config["Server"]["Port"]), config["Bot"]["Nick"])
     bot.connect()
+
+    time.sleep(3)
+
     bot.join(config["Channel"]["Channel"])
 
     while True:
