@@ -25,3 +25,4 @@ TODO
  * Plugin support
  * Multiple channels
  * Optional SSL
+ * Optional output (Debug mode)
