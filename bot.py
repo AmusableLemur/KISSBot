@@ -1,6 +1,7 @@
 import configparser, re, socket, ssl, sys, time
 
 from bs4 import BeautifulSoup
+from bs4 import UnicodeDammit
 from urllib.request import urlopen
 
 class Bot:
@@ -37,7 +38,8 @@ class Bot:
         self.send("Title: " + soup.title.string)
 
     def receive(self):
-        message = self.socket.recv(2048).decode("UTF-8")
+        message = self.socket.recv(2048)
+        message = UnicodeDammit(message).unicode_markup
         message = message.strip("\n\r")
 
         print(message)
