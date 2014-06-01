@@ -17,7 +17,7 @@ Start the server by running `python bot.py` from the terminal.
 Features
 --------
  * Automatically fetches titles from links
- * Can be killed by typing `die <botname` in the channel
+ * Can be killed by typing `die <botname>` in the channel
 
 TODO
 ----
